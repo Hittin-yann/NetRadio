@@ -1,0 +1,1149 @@
+@import "text"
+
+$font-family-default: Tahoma, serif !default
+$font-size-default: 20px !default
+$border-right-default: 3px solid gray !default
+$first-color-default: white !default
+$second-color-default: rgba(#E43C3C,0.4) !default
+$third-color-default: #242424 !default
+
+@mixin font-family ($font:$font-family-default)
+  font-family: $font
+
+
+@mixin navbar-size($size)
+  @if($size == "small")
+    display: grid
+    grid-template-columns: 15% 50% 30% 5%
+
+
+  @if($size == "medium")
+    display: grid
+    grid-template-columns: 15% 50% 30% 5%
+
+
+  @if($size == "large")
+    display: grid
+    grid-template-columns: 15% 50% 30% 5%
+
+
+
+@mixin font-size($size)
+  @if($size == "small")
+    display: grid
+    grid-template-columns: 15% 50% 30% 5%
+
+
+  @if($size == "medium")
+    display: grid
+    grid-template-columns: 15% 50% 30% 5%
+
+
+  @if($size == "large")
+    font-size: $font-size-default
+
+
+
+@mixin navbar-type($type)
+  @if($type == "content")
+    font-size: $font-family-default
+
+
+
+@mixin navbar-logo($size)
+  @if($size == "small")
+    grid-column: 1/2
+    @include img-width(150px)
+    @include padding(10px, 10px, 0, 0)
+
+
+  @if($size == "medium")
+    grid-column: 1/2
+    @include img-width(150px)
+    @include padding(10px, 10px, 0, 0)
+
+
+  @if($size == "large")
+    grid-column: 1/2
+    @include img-width(150px)
+    @include padding(10px, 10px, 0, 20px)
+
+
+
+@mixin navbar-search($size)
+  @if($size == "small")
+    font-size: $font-family-default
+
+
+  @if($size == "medium")
+    grid-column: 1/2
+
+
+  @if($size == "large")
+    grid-column: 3/4
+    display: grid
+    grid-template-columns: 70% 20%
+    grid-column-gap: 10px
+    @include padding(30px, 0, 0, 95px)
+
+
+
+@mixin navbar-compte($size)
+  @if($size == "small")
+    @include padding(20px, 0, 0, 0)
+
+
+  @if($size == "medium")
+    @include padding(20px, 0, 0, 0)
+
+
+  @if($size == "large")
+    @include padding(20px, 0, 0, 0)
+
+
+
+@mixin navbar-content($type)
+  @if($type == "ul")
+    list-style: none
+    text-align: center
+
+
+  @if($type == "ul li a")
+    text-decoration: none
+    color: $first-color-default
+
+
+  @if($type == "programmes")
+    border-right: $border-right-default
+
+
+  @if($type == "podcasts")
+    border-right: $border-right-default
+
+
+  @if($type == "ledirect")
+    @include background-color(rgba(24,24,24,0.4))
+
+
+
+@mixin navbar-content-size($size)
+  @if ($size == "small")
+    display: grid
+    grid-template-columns: 32% 32% 36%
+
+
+  @if ($size == "medium")
+    display: grid
+    grid-template-columns: 32% 32% 36%
+
+
+  @if ($size == "large")
+    display: grid
+    grid-template-columns: 32% 32% 36%
+
+
+
+@mixin navbar-programmes($size)
+  @if ($size == "small")
+    grid-column: 1/2
+
+
+  @if ($size == "medium")
+    grid-column: 1/2
+
+
+  @if ($size == "large")
+    grid-column: 1/2
+    @include padding(18px, 10px, 18px, 0)
+
+
+
+@mixin navbar-podcasts($size)
+  @if ($size == "small")
+    grid-column: 2/3
+
+
+  @if ($size == "medium")
+    grid-column: 2/3
+
+
+  @if ($size == "large")
+    grid-column: 2/3
+    @include padding(18px, 10px, 18px, 0)
+
+
+
+@mixin navbar-ledirect($size)
+  @if($size == "small")
+    grid-column: 3/4
+    display: grid
+    grid-template-columns: 50% 50%
+
+
+  @if($size == "medium")
+    grid-column: 3/4
+    display: grid
+    grid-template-columns: 50% 50%
+
+
+  @if($size == "large")
+    grid-column: 3/4
+    display: grid
+    grid-template-columns: 50% 50%
+    margin-left: 30px
+    @include padding(10px, 30px, 10px, 0)
+
+
+
+@mixin ledirect-type($type, $size)
+  @if($type == "text" and $size == 'small')
+    grid-column: 2/3
+    @include padding(7px, 0, 0, 0)
+    @include margin(0, 0, 0, -25px)
+
+
+  @if($type == "text" and $size == 'medium')
+    grid-column: 2/3
+    @include padding(7px, 0, 0, 0)
+    @include margin(0, 0, 0, -25px)
+
+
+  @if($type == "text" and $size == 'large')
+    grid-column: 2/3
+    @include padding(7px, 0, 0, 0)
+    @include margin(0, 0, 0, -80px)
+    @include font-size('large')
+
+
+  @if($type == "play" and $size == 'small')
+    grid-column: 1/2
+    @include margin(-4px, 0, -4px, 0)
+
+
+  @if($type == "play" and $size == 'medium')
+    grid-column: 1/2
+    @include margin(-4px, 0, -4px, 0)
+
+
+  @if($type == "play" and $size == 'large')
+    grid-column: 1/2
+    @include margin(-4px, 0, -4px, -50px)
+    border: none
+
+
+
+@mixin img-width($width)
+  width: $width
+
+
+@mixin padding($top, $right, $bottom, $left)
+  padding: $top $right $bottom $left
+
+
+@mixin margin($top, $right, $bottom, $left)
+  margin: $top $right $bottom $left
+
+
+@mixin footer
+  @include background-color(rgba(24,24,24,0.7))
+  @include text-color($first-color-default)
+  padding: 20px 20px
+  font-weight: bold
+  text-align: center
+  bottom: 0
+  position: fixed
+  width: 100%
+
+
+@mixin input($width, $height, $font)
+  width: $width
+  height: $height
+  font-size: $font
+  border-radius: 20px
+
+
+@mixin input-size($size)
+  @if($size == "small")
+    @include input(270px, 40px, 18px)
+    @include padding(0, 0, 0, 20px)
+
+
+  @if($size == "medium")
+    @include input(270px, 40px, 18px)
+    @include padding(0, 0, 0, 20px)
+
+
+  @if($size == "large")
+    @include input(270px, 40px, 18px)
+    @include padding(0, 0, 0, 20px)
+
+
+
+@mixin btn-size($width, $height, $font)
+  width: $width
+  height: $height
+  font-size: $font
+
+
+
+@mixin btn-type($type)
+  @if($type == "search")
+    border-radius: 10px
+    background-color: #E43C3C
+    border-color: #E43C3C
+
+
+  @if($type == "play")
+    display: grid
+    grid-template-columns: 20% 80%
+    border-radius: 20px
+    @include background-color(#FF3535)
+    border: 1px solid #FF3535
+
+
+  @if($type == "stop")
+    border-radius: 20px
+    @include background-color(#FF3535)
+    @include text-color($first-color-default)
+    font-weight: bold
+    margin: 20px 0 50px 0
+
+
+  @if($type == "pause")
+    margin: 20px 0 20px 0
+
+
+  @if($type == "subscribe")
+    border-radius: 10px
+    border: 1px solid #FF3535
+    @include background-color(#FF3535)
+    @include text-color($first-color-default)
+    font-weight: bold
+    width: 200px
+    font-size: $font-size-default
+    height: 50px
+    text-align: center
+
+
+  @if($type == "info")
+    text-align: center
+    font-size: $font-size-default
+    @include background-color(#424242)
+    @include text-color($first-color-default)
+    border-radius: 20px
+    border: 3px solid #808080
+    font-weight: bold
+
+
+  @if($type == "connection")
+    text-align: center
+    font-size: $font-size-default
+    @include background-color(#CC3838)
+    @include text-color($first-color-default)
+    border-radius: 10px
+    border: 3px solid #CC3838
+    font-weight: bold
+    margin: 80px 0 0 0
+    padding: 10px 40px
+
+
+  @if($type == "register")
+    text-align: center
+    font-size: $font-size-default
+    @include background-color(#CC3838)
+    @include text-color($first-color-default)
+    border-radius: 10px
+    border: 3px solid #CC3838
+    font-weight: bold
+    margin: 80px 0 30px 0
+    padding: 10px 40px
+
+
+  @if($type == "accueil")
+    text-align: center
+    font-size: $font-size-default
+    @include background-color(#3BBD39)
+    @include text-color($first-color-default)
+    border-radius: 10px
+    border: 3px solid #3BBD39
+    font-weight: bold
+    padding: 15px 45px
+
+
+  @if($type == "close")
+    color: $first-color-default
+    display: flex
+    justify-content: right
+    font-size: 28px
+    font-weight: bold
+
+
+  @if($type == "confirm")
+    text-align: center
+    font-size: $font-size-default
+    @include background-color(#3BBD39)
+    @include text-color($first-color-default)
+    border-radius: 10px
+    border: 3px solid #3BBD39
+    font-weight: bold
+    padding: 10px 45px
+
+
+  @if($type == "form")
+    margin: 50px 0 0 0
+
+
+  @if($type == "invitation")
+    text-align: center
+    font-size: $font-size-default
+    @include background-color(dodgerblue)
+    @include text-color($first-color-default)
+    border-radius: 10px
+    border: 3px solid dodgerblue
+    font-weight: bold
+    padding: 10px 40px
+    margin: 0 0 0 30px
+
+
+
+@mixin content-type($type, $size)
+  @if($type == "accueil" and $size == 'small')
+    display: grid
+    grid-template-columns: 60% 30%
+    grid-column-gap: 150px
+
+
+  @if($type == "accueil" and $size == 'medium')
+    display: grid
+    grid-template-columns: 60% 30%
+    grid-column-gap: 150px
+
+
+  @if($type == "accueil" and $size == 'large')
+    display: grid
+    grid-template-columns: 60% 30%
+    grid-column-gap: 150px
+    margin: 0 0 50px 0
+
+
+
+@mixin content-left($width, $height, $size)
+  @if($size == 'small')
+    width: $width
+    height: $height
+    border: 3px solid darkred
+    position: relative
+
+
+  @if($size == 'medium')
+    width: $width
+    height: $height
+    border: 3px solid darkred
+    position: relative
+
+
+  @if($size == 'large')
+    width: $width
+    height: $height
+    border: 3px solid darkred
+    position: relative
+    grid-column: 1/2
+
+
+
+@mixin content-info($top, $left)
+    top: $top
+    left: $left
+    position: absolute
+    color: $first-color-default
+
+
+@mixin content-right($size)
+  @if($size == 'small')
+    font-size: $font-size-default
+
+
+  @if($size == 'medium')
+    font-size: $font-size-default
+
+
+  @if($size == 'large')
+    grid-column: 2/3
+    font-size: $font-size-default
+    @include margin(70px, 0 , 0, 0)
+    @include padding(0, -20px, 0, 0)
+
+
+
+
+@mixin content-program-info($size)
+  @if($size == 'small')
+    border-bottom: 10px solid #242424
+    @include padding(20px, 0, 20px, 50px)
+
+
+  @if($size == 'medium')
+    border-bottom: 10px solid #242424
+    @include padding(20px, 0, 20px, 50px)
+
+
+  @if($size == 'large')
+    border-bottom: 10px solid #242424
+    @include padding(20px, 0, 20px, 50px)
+
+
+
+@mixin content-program-btn($type)
+  @if($type == 'clicked')
+    @include background-color(#595959)
+
+
+  @if($type == 'not clicked')
+    @include background-color(#E43C3C)
+
+
+@mixin hover($type)
+  @include text-color(#FFD600)
+
+  @if($type == 'navbar')
+    @include background-color($second-color-default)
+
+
+  @if($type == 'search')
+    @include background-color(lightcoral)
+    border: 3px solid lightcoral
+    @include text-color($first-color-default)
+
+
+  @if($type == 'subscribe')
+    @include background-color(lightcoral)
+    border: 3px solid lightcoral
+    @include text-color($first-color-default)
+
+
+  @if($type == 'play')
+    @include background-color(lightcoral)
+    border: 3px solid lightcoral
+    @include text-color($first-color-default)
+    border-radius: 20px
+
+
+  @if($type == 'notification')
+    @include background-color(lightblue)
+    border: 3px solid lightblue
+    @include text-color($first-color-default)
+    border-radius: 20px
+
+
+  @if($type == 'download')
+    @include background-color(lightblue)
+    border: 3px solid lightblue
+    @include text-color($first-color-default)
+    border-radius: 15px
+
+
+  @if($type == 'podcasts')
+    @include background-color(rgba(#E43C3C,0.5))
+    text-decoration: none
+
+
+  @if($type == 'favoris')
+    @include background-color(lightcoral)
+    border: 3px solid lightcoral
+    border-radius: 20px
+
+
+  @if($type == 'ledirect')
+    @include background-color(lightcoral)
+    @include text-color($first-color-default)
+    border: 3px solid lightcoral
+
+
+  @if($type == 'stop')
+    @include background-color(lightcoral)
+    @include text-color($first-color-default)
+    border: 3px solid lightcoral
+
+
+  @if($type == 'connection')
+    @include background-color(lightcoral)
+    @include text-color($first-color-default)
+    border: 3px solid lightcoral
+
+
+  @if($type == 'register')
+    @include background-color(lightcoral)
+    @include text-color($first-color-default)
+    border: 3px solid lightcoral
+
+
+  @if($type == 'accueil')
+    @include background-color(lightgreen)
+    @include text-color($first-color-default)
+    border: 3px solid lightgreen
+
+
+  @if($type == 'info')
+    @include background-color(lightgray)
+    @include text-color($first-color-default)
+    border: 3px solid lightgray
+
+
+
+@mixin content($type)
+  @if($type == 'accueil')
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    margin: -50px 0 0 0
+
+  @if($type == 'ledirect')
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    margin: 0 0 50px 0
+
+
+@mixin ledirect-content-type($type)
+  @if($type == 'title')
+    @include text-color($first-color-default)
+    @include padding(40px, 0, 30px, 0)
+    text-align: center
+
+
+  @if($type == 'img')
+    display: flex
+    justify-content: center
+    align-items: center
+
+
+@mixin podcasts-content-type($type)
+  @if($type == 'title')
+    @include text-color($first-color-default)
+    @include padding(40px, 0, 30px, 0)
+    text-align: center
+
+
+  @if($type == 'list')
+    margin: 0 0 100px 0
+
+
+  @if($type == 'list-content')
+    @include background-color(#7B2020)
+    @include text-color($first-color-default)
+    @include padding(20px, 20px, 20px, 20px)
+    font-size: $font-size-default
+    list-style: none
+    margin: 0 50px 8px 20px
+    font-weight: bold
+    text-decoration: none
+
+
+
+@mixin podcast-content-profile($size)
+  @if($size == 'large')
+    display: grid
+    grid-template-columns: 20% 78%
+    grid-column-gap: 32px
+    margin: 70px 70px 0 70px
+
+
+
+@mixin podcast-content-type($type)
+  @if($type == 'img')
+    border: 8px solid #7B2020
+    @include img-width(100%)
+
+
+  @if($type == 'profile')
+    @include text-color($first-color-default)
+    font-size: $font-size-default
+    border: 8px solid #7B2020
+    padding: 20px 0 140px 30px
+    display: grid
+    grid-template-columns: 70% 20%
+    grid-column-gap: 2%
+    height: fit-content
+
+
+  @if($type == 'notification')
+    border: none
+
+
+  @if($type == 'btn')
+    display: grid
+    grid-template-columns: 70% 20%
+    grid-column-gap: 70px
+    margin: 20px 0
+
+
+  @if($type == 'info')
+    display: grid
+    grid-template-columns: 22% 72%
+    grid-column-gap: 25px
+    margin: 0 0 80px 70px
+
+
+  @if($type == 'announcement')
+    border: 8px solid #7B2020
+    padding: 0 20px 0 0
+    font-size: $font-size-default
+    @include text-color($first-color-default)
+
+
+  @if($type == 'mypodcast')
+    padding: 0 0 0 30px
+    font-size: $font-size-default
+    @include text-color($first-color-default)
+
+
+
+@mixin podcast-content()
+  display: grid
+  grid-template-rows: 0.1fr 1fr
+  grid-row-gap: 40px
+
+
+
+@mixin podcast-content-annoucement($type)
+  @if($type == 'title')
+    @include text-color(#FFD600)
+    font-size: 25px
+    text-align: center
+    margin: 0 0 0 20px
+
+
+  @if($type == 'content')
+    margin: 0 20px 10px -30px
+    border: 5px solid #7B2020
+    @include background-color(rgba(0,0,0,0.6))
+    padding: 20px 0 20px 30px
+    font-size: $font-size-default
+    @include text-color(#FFD600)
+    list-style: none
+    width: 100%
+
+
+
+@mixin podcast-content-mypodcast($type)
+  @if($type == 'title')
+    border: 3px solid #7B2020
+    @include background-color(#424242)
+    @include text-color($first-color-default)
+    font-size: $font-size-default
+    text-align: center
+    padding: 5px  10px 0 -10px
+    border-radius: 50px
+    width: 40%
+    margin: auto
+
+
+  @if($type == 'content')
+    margin: 0 0 10px -40px
+    @include background-color(#7B2020)
+    padding: 0 0 0 30px
+    font-size: $font-size-default
+    @include text-color($first-color-default)
+    list-style: none
+    width: 100%
+    display: grid
+    grid-template-columns: 80% 10% 10%
+
+
+  @if($type == 'emissions')
+    margin: 80px 0 0 0
+
+
+  @if($type == 'emission')
+    margin: 0 0 60px 0
+
+
+  @if($type == 'emission-title')
+    font-size: 22px
+    font-weight: bold
+    grid-column: 1/2
+
+
+  @if($type == 'emission-head')
+    display: grid
+    grid-template-columns: 90% 10%
+
+
+  @if($type == 'favoris')
+    grid-column: 2/3
+    width: 50px
+    margin: auto
+
+
+  @if($type == 'play')
+    grid-column: 2/3
+    width: 60px
+    margin: auto
+
+
+  @if($type == 'download')
+    grid-column: 3/4
+    width: 50px
+    margin: auto
+
+
+  @if($type == 'h5')
+    grid-column: 1/2
+    font-size: $font-size-default
+
+
+@mixin programmes-content
+  @include text-color($first-color-default)
+  text-align: center
+
+
+@mixin programmes-content-type($type)
+  @if($type == 'date')
+    border-radius: 15px
+    border: 1px solid #E43C3C
+    font-size: 20px
+    text-align: center
+    padding: 20px 30px 20px 30px
+    width: fit-content
+    font-weight: bold
+    @include text-color($first-color-default)
+    @include background-color(#E43C3C)
+    margin: 100px auto 90px auto
+    grid-column: 2/3
+
+  @if($type == 'emission')
+    margin: -40px 0 100px 0
+
+
+  @if($type == 'list')
+    list-style: none
+    margin: 0 30px 20px 0
+
+
+  @if($type == 'list-content')
+    @include background-color(#7B2020)
+    @include text-color($first-color-default)
+    padding: 10px 0 10px 40px
+    display: grid
+    grid-template-columns: 80% 15%
+    margin: 0 0 10px 0
+    text-align: start
+    font-size: 18px
+
+
+  @if($type == 'favoris')
+    grid-column: 2/3
+    width: 50px
+    margin: auto
+
+
+  @if($type == 'emission-time')
+    display: grid
+    grid-template-columns: 90% 10%
+    margin: 80px 0 20px 0
+
+
+  @if($type == 'time')
+    font-size: 25px
+    font-weight: bold
+    grid-column: 1/2
+    text-align: start
+    margin: 0 0 0 40px
+    @include text-color(#FFD600)
+
+
+  @if($type == 'header')
+    margin: 80px 0 0 0
+
+
+  @if($type == 'next')
+    grid-column: 3/4
+    width: 70px
+    margin: auto 10px auto 10px
+
+
+  @if($type == 'previous')
+    grid-column: 1/2
+    width: 70px
+    margin: auto 10px auto auto
+
+  @if($type == 'programme-date')
+    display: grid
+    grid-template-columns: 35% 30% 35%
+
+
+@mixin compte-type($type)
+  @if($type == 'header')
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: 0 0 0 430px
+
+
+  @if($type == 'logo')
+    width: 40%
+    margin: 30px 0 50px 0
+
+
+  @if($type == 'content')
+    display: grid
+    grid-template-columns: 50% 50%
+    margin: 0 0 50px 0
+
+
+  @if($type == 'footer')
+    margin: 0 0 150px 0
+    font-size: $font-size-default
+    @include text-color($first-color-default)
+    display: grid
+    grid-template-columns: 70% 30%
+
+
+
+
+@mixin compte-connection-type($type)
+  @if($type == 'connection-title')
+    text-align: center
+
+
+  @if($type == 'connection')
+    @include background-color(#2C2B2B)
+    @include text-color($first-color-default)
+    border: 2px solid #FF3535
+    border-radius: 30px
+    padding: 30px 80px 30px 70px
+    margin: 0 0 0 100px
+
+
+  @if($type == 'form-label')
+    font-size: $font-size-default
+    font-weight: bold
+    padding: 20px 0 0 0
+
+
+  @if($type == 'form-title')
+    padding: 20px 0 0 0
+
+
+  @if($type == 'form-input')
+    width: 100%
+    @include background-color(rgba(#ABAAAA, 0.5))
+    @include text-color($first-color-default)
+    height: 40px
+    padding: 0 0 0 10px
+    font-size: $font-size-default
+
+
+  @if($type == 'btn')
+    display: flex
+    justify-content: center
+    align-items: center
+
+
+
+@mixin compte-register-type($type)
+  @if($type == 'register-title')
+    text-align: center
+
+
+  @if($type == 'register')
+    @include background-color(#2C2B2B)
+    @include text-color($first-color-default)
+    border: 2px solid #FF3535
+    border-radius: 30px
+    padding: 30px 80px 30px 70px
+    margin: 0 100px 0 0
+
+
+  @if($type == 'form-label')
+    font-size: $font-size-default
+    font-weight: bold
+    padding: 20px 0 0 0
+
+
+  @if($type == 'form-title')
+    padding: 20px 0 0 0
+
+
+  @if($type == 'form-input')
+    width: 100%
+    @include background-color(rgba(#ABAAAA, 0.5))
+    @include text-color($first-color-default)
+    height: 40px
+    padding: 0 0 0 10px
+    font-size: $font-size-default
+
+
+  @if($type == 'btn')
+    display: flex
+    justify-content: center
+    align-items: center
+
+
+
+@mixin compte-footer-type($type)
+  @if($type == 'invite')
+    grid-column: 1/2
+    margin: auto auto auto 150px
+    font-size: $font-size-default
+    font-weight: bold
+
+
+  @if($type == 'btn')
+    grid-column: 2/3
+    margin: auto
+
+
+
+@mixin popup($type)
+  @if($type == 'modal')
+    display: none
+    position: fixed
+    z-index: 1
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    overflow: auto
+    background-color: rgb(0,0,0)
+    background-color: rgba(0,0,0,0.4)
+    padding: 120px 0 100px 0
+
+
+  @if($type == 'modal-content')
+    background-color: #2C2B2B
+    margin: auto
+    padding: 5px 15px 60px 15px
+    border: 2px solid #FF3535
+    width: 40%
+    border-radius: 5px
+
+
+  @if($type == 'programme')
+    text-align: center
+    display: flex
+    justify-content: center
+    align-items: center
+    @include text-color($first-color-default)
+    padding: 20px 0 20px 0
+
+
+  @if($type == 'programme-content')
+    font-size: 20px
+
+
+  @if($type == 'programme-episode')
+    text-decoration: none
+    border-radius: 10px
+    @include background-color(#CC3838)
+    @include text-color($first-color-default)
+    font-weight: bold
+    padding: 10px 30px 10px 30px
+    border: 1px solid #CC3838
+    grid-column: 1/2
+    margin: auto
+
+
+  @if($type == 'programme-footer')
+    display: grid
+    grid-template-columns: 65% 35%
+    margin: 50px 0 0 0
+
+
+  @if($type == 'programme-notification')
+    grid-column: 2/3
+    width: 50px
+    margin: auto
+
+
+@mixin form-type($type)
+  @if($type == 'invitation')
+    text-align: center
+    display: flex
+    justify-content: center
+    align-items: center
+    @include text-color($first-color-default)
+
+
+  @if($type == 'invitation-title')
+    margin: 50px 0 50px 0
+
+
+  @if($type == 'input')
+    width: 95%
+    @include background-color(rgba(#ABAAAA, 0.5))
+    @include text-color($first-color-default)
+    height: 40px
+    padding: 0 0 0 10px
+    font-size: $font-size-default
+
+
+@mixin container
+  align-items: center
+  display: flex
+  height: 100%
+  justify-content: center
+  margin: 0 auto
+  max-width: 600px
+  width: 100%
+
+
+@mixin calendar
+  background: #2b4450
+  border-radius: 4px
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .3)
+  width: 100%
+  height: fit-content
+  border: 2px solid #FFD600
+
+
+
+@mixin calendar-type($type)
+  @if($type == 'current-date')
+    border-bottom: 1px solid rgba(73, 114, 133, .6)
+    display: flex
+    justify-content: space-between
+    padding: 30px 40px
+
+
+  @if($type == 'current-date-h1')
+    color: #dfebed
+    font-size: 1.4em
+    font-weight: 300
+
+
+  @if($type == 'week-days')
+    color: #dfebed
+    display: flex
+    justify-content: space-between
+    font-weight: 600
+    padding: 30px 40px
+    list-style: none
+
+
+  @if($type == 'days')
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+
+  @if($type == 'weeks')
+    color: #fff
+    display: flex
+    flex-direction: column
+    padding: 0 40px
+
+  @if($type == 'weeks-div')
+    display: flex
+    font-size: 1.2em
+    font-weight: 300
+    justify-content: space-between
+    margin-bottom: 20px
+    width: 100%
+
+  @if($type == 'last-month')
+    opacity: .3
+
+  @if($type == 'weeks-span')
+    padding: 10px
