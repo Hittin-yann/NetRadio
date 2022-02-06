@@ -1,17 +1,34 @@
 <template>
-  <nav class="navbar">
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <router-link class="navbar-item" to="/"> Accueil </router-link>
-
-        <router-link class="navbar-item" to="/Administrateur">Administrateur</router-link>
-
-        <router-link class="navbar-item" to="/Animateur">Animateur</router-link>
-
-        <router-link class="navbar-item" to="/Auditeur">Auditeur</router-link>
-      </div>
-    </div>
-  </nav>
+    <nav class="navbar">
+        <div id="navbar-logo">
+            <router-link to="/"><img src="img/logo.png" alt="Net'Radio"></router-link>
+        </div>
+        <div id="navbar-content">
+            <ul>
+                <li id="programmes">
+                    <router-link to="/Programmes"><strong>Programmes</strong></router-link>
+                </li>
+                <li id="podcasts">
+                    <router-link to="/"><strong>Podcasts</strong></router-link>
+                </li>
+                <li id="ledirect">
+                    <router-link to="/">
+                        <div id="ledirect-play">
+                            <img src="img/ledirect.png" alt="Le direct">
+                        </div>
+                        <div id="ledirect-text"><strong>LE DIRECT</strong></div>
+                    </router-link>
+                </li>
+            </ul>
+        </div>
+        <div id="navbar-search">
+            <input type="text" value="Recherche..."/>
+            <button type="submit" id="btn-search"><i class="fas fa-search"></i></button>
+        </div>
+        <div id="navbar-compte">
+            <router-link to="/"><img src="img/compte.png" alt="Connexion"></router-link>
+        </div>
+    </nav>
 </template>
 
 <script>
@@ -19,7 +36,5 @@ export default {};
 </script>
 
 <style lang="scss">
-.navbar-menu {
-  background-color: white;
-}
+
 </style>

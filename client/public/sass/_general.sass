@@ -1,0 +1,621 @@
+@import "constructeur"
+
+html, body
+  @include font-family
+  @include background-color(#242424)
+
+
+.navbar
+  @include background-color(#424242)
+
+
+#navbar-content ul
+  @include navbar-content('ul')
+
+
+#navbar-content ul li a:hover
+  @include hover('navbar')
+
+
+#navbar-content ul li a
+  @include navbar-content('ul li a')
+
+
+#navbar-content ul #programmes
+  @include navbar-content('programmes')
+
+
+#navbar-content ul #podcasts
+  @include navbar-content('podcasts')
+
+
+#navbar-content ul #ledirect
+  @include navbar-content('ledirect')
+
+
+#btn-search
+  @include btn-type('search')
+
+
+#btn-search:hover
+  @include hover('search')
+
+
+#content-accueil #content-left
+  @include content('accueil')
+
+
+#content-accueil #content-left #content-info #btn-play:hover
+    @include hover('ledirect')
+
+
+.content-program-time
+  @include text-color(#FFD600)
+
+
+.content-program-name
+  @include text-color(white)
+
+
+.content-program-clicked
+  @include content-program-btn('not clicked')
+
+
+.content-program-not-clicked
+  @include content-program-btn('clicked')
+
+
+footer
+  @include footer
+
+
+#ledirect-content
+  @include content('ledirect')
+
+
+#ledirect-content #btn-stop
+  @include btn-type('stop')
+
+
+#ledirect-content #btn-stop:hover
+  @include hover('stop')
+
+#ledirect-content #ledirect-content-title
+  @include ledirect-content-type('title')
+
+
+#ledirect-content #ledirect-content-img
+  @include ledirect-content-type('img')
+
+
+#podcasts-content #podcasts-content-title
+  @include podcasts-content-type('title')
+
+
+#podcasts-content #podcasts-content-list
+  @include podcasts-content-type('list')
+
+
+#podcasts-content #podcasts-content-list ul a li
+  @include podcasts-content-type('list-content')
+
+
+#podcasts-content #podcasts-content-list ul a li:hover
+  @include hover('podcasts')
+
+
+#podcast-content #podcast-content-profile #podcast-content-profile-info #btn-subscribe
+  @include btn-type('subscribe')
+
+
+#podcast-content #podcast-content-profile #podcast-content-profile-info #btn-subscribe:hover
+  @include hover('subscribe')
+
+
+#podcast-content #podcast-content-profile img
+  @include podcast-content-type('img')
+
+
+#podcast-content #podcast-content-profile #podcast-content-profile-info
+  @include podcast-content-type('profile')
+
+
+#podcast-content
+  @include podcast-content
+
+
+#podcast-content #podcast-content-profile #podcast-content-profile-info #podcast-content-profile-info-btn
+  @include podcast-content-type('btn')
+
+
+#podcast-content #podcast-content-info
+  @include podcast-content-type('info')
+
+
+#podcast-content #podcast-content-info #podcast-content-announcement
+  @include podcast-content-type('announcement')
+
+
+#podcast-content #podcast-content-info #podcast-content-mypodcast
+  @include podcast-content-type('mypodcast')
+
+
+#podcast-content #podcast-content-info #podcast-content-announcement #podcast-content-announcement-title
+  @include podcast-content-annoucement('title')
+
+
+#podcast-content #podcast-content-info #podcast-content-announcement #podcast-content-announcement-content ul li
+  @include podcast-content-annoucement('content')
+
+
+#podcast-content #podcast-content-info #podcast-content-mypodcast #podcast-content-mypodcast-title
+  @include podcast-content-mypodcast('title')
+
+
+#podcast-content #podcast-content-info #podcast-content-mypodcast #podcast-content-mypodcast-emissions
+  @include podcast-content-mypodcast('emissions')
+
+
+#podcast-content #podcast-content-info #podcast-content-mypodcast #podcast-content-mypodcast-emissions .podcast-content-mypodcast-emission
+  @include podcast-content-mypodcast('emission')
+
+
+#podcast-content #podcast-content-info #podcast-content-mypodcast #podcast-content-mypodcast-emissions .podcast-content-mypodcast-emission .podcast-content-mypodcast-emission-head
+  @include podcast-content-mypodcast('emission-head')
+
+
+#podcast-content #podcast-content-info #podcast-content-mypodcast #podcast-content-mypodcast-emissions .podcast-content-mypodcast-emission .podcast-content-mypodcast-emission-head h5
+  @include podcast-content-mypodcast('emission-title')
+
+
+#podcast-content #podcast-content-info #podcast-content-mypodcast #podcast-content-mypodcast-emissions .podcast-content-mypodcast-emission .podcast-content-mypodcast-emission-head img
+  @include podcast-content-mypodcast('favoris')
+
+
+#podcast-content #podcast-content-info #podcast-content-mypodcast #podcast-content-mypodcast-emissions .podcast-content-mypodcast-emission .podcast-content-mypodcast-emission-head img:hover
+  @include hover('favoris')
+
+
+#podcast-content #podcast-content-info #podcast-content-mypodcast #podcast-content-mypodcast-emissions .podcast-content-mypodcast-emission ul li
+  @include podcast-content-mypodcast('content')
+
+
+#podcast-content #podcast-content-info #podcast-content-mypodcast #podcast-content-mypodcast-emissions .podcast-content-mypodcast-emission ul li h5
+  @include podcast-content-mypodcast('h5')
+
+
+#podcast-content #podcast-content-info #podcast-content-mypodcast #podcast-content-mypodcast-emissions .podcast-content-mypodcast-emission ul li img:nth-of-type(1)
+  @include podcast-content-mypodcast('play')
+
+
+#podcast-content #podcast-content-info #podcast-content-mypodcast #podcast-content-mypodcast-emissions .podcast-content-mypodcast-emission ul li img:nth-of-type(1):hover
+  @include hover('play')
+
+
+#podcast-content #podcast-content-info #podcast-content-mypodcast #podcast-content-mypodcast-emissions .podcast-content-mypodcast-emission ul li img:nth-of-type(2)
+  @include podcast-content-mypodcast('download')
+
+
+#podcast-content #podcast-content-info #podcast-content-mypodcast #podcast-content-mypodcast-emissions .podcast-content-mypodcast-emission ul li img:nth-of-type(2):hover
+  @include hover('download')
+
+
+#programmes-content
+  @include programmes-content
+
+
+#programmes-content h1
+  @include programmes-content-type('header')
+
+
+#programmes-content #programmes-content-date
+  @include programmes-content-type('programme-date')
+
+
+#programmes-content #programmes-content-date img:nth-of-type(1)
+  @include programmes-content-type('previous')
+
+
+#programmes-content #programmes-content-date p
+  @include programmes-content-type('date')
+
+
+#programmes-content #programmes-content-date img:nth-of-type(2)
+  @include programmes-content-type('next')
+
+
+#programmes-content #programmes-content-emission
+  @include programmes-content-type('emission')
+
+
+#programmes-content #programmes-content-emission .programmes-content-emission-list
+  @include programmes-content-type('list')
+
+
+#programmes-content #programmes-content-emission .programmes-content-emission-time
+  @include programmes-content-type('emission-time')
+
+
+#programmes-content #programmes-content-emission .programmes-content-emission-time h2
+  @include programmes-content-type('time')
+
+
+#programmes-content #programmes-content-emission .programmes-content-emission-time img
+  @include programmes-content-type('favoris')
+
+
+#programmes-content #programmes-content-emission .programmes-content-emission-time img:hover
+  @include hover('favoris')
+
+
+#programmes-content #programmes-content-emission .programmes-content-emission-list li
+  @include programmes-content-type('list-content')
+
+
+#programmes-content #programmes-content-emission .programmes-content-emission-list li .btn-info
+  @include btn-type('info')
+
+
+#programmes-content #programmes-content-emission .programmes-content-emission-list li .btn-info:hover
+  @include hover('info')
+
+
+#compte-header
+  @include compte-type('header')
+
+
+#compte-header img
+  @include compte-type('logo')
+
+
+#compte-content
+  @include compte-type('content')
+
+
+#compte-content #compte-content-connection
+  @include compte-connection-type('connection')
+
+
+#compte-content #compte-content-connection h1
+  @include compte-connection-type('connection-title')
+
+
+#compte-content #compte-content-connection #compte-content-connection-form
+  @include compte-connection-type('form-label')
+
+
+#compte-content #compte-content-connection #compte-content-connection-form p
+  @include compte-connection-type('form-title')
+
+
+#compte-content #compte-content-connection #compte-content-connection-form .input
+  @include compte-connection-type('form-input')
+
+
+#compte-content #compte-content-connection #compte-content-connection-form .btn
+  @include compte-connection-type('btn')
+
+
+#compte-content #compte-content-connection #compte-content-connection-form .btn #btn-connection
+  @include btn-type('connection')
+
+
+#compte-content #compte-content-connection #compte-content-connection-form .btn #btn-connection:hover
+  @include hover('connection')
+
+
+#compte-content #compte-content-register
+  @include compte-register-type('register')
+
+
+#compte-content #compte-content-register h1
+  @include compte-register-type('register-title')
+
+
+#compte-content #compte-content-register #compte-content-register-form
+  @include compte-register-type('form-label')
+
+
+#compte-content #compte-content-register #compte-content-register-form p
+  @include compte-register-type('form-title')
+
+
+#compte-content #compte-content-register #compte-content-register-form .input
+  @include compte-register-type('form-input')
+
+
+#compte-content #compte-content-register #compte-content-register-form .btn #btn-register
+  @include btn-type('register')
+
+
+#compte-content #compte-content-register #compte-content-register-form .btn #btn-register:hover
+  @include hover('register')
+
+
+#compte-content #compte-content-register #compte-content-register-form .btn
+  @include compte-register-type('btn')
+
+
+#compte-footer
+  @include compte-type('footer')
+
+
+#compte-footer p
+  @include compte-footer-type('invite')
+
+
+#compte-footer #compte-footer-btn
+  @include compte-footer-type('btn')
+
+
+#compte-footer #compte-footer-btn #btn-accueil
+  @include btn-type('accueil')
+
+
+#compte-footer #compte-footer-btn #btn-accueil:hover
+  @include hover('accueil')
+
+
+.modal
+  @include popup('modal')
+
+
+
+.modal-content
+  @include popup('modal-content')
+
+
+.close
+  @include btn-type('close')
+
+
+
+#form-invitation .modal-content h1
+  @include form-type('invitation-title')
+
+
+
+#form-invitation .modal-content form .input
+  @include form-type('input')
+
+
+
+#form-invitation
+  @include form-type('invitation')
+  @include popup('modal')
+
+
+
+.btn-form
+  @include btn-type('form')
+
+
+
+#btn-confirm
+  @include btn-type('confirm')
+
+
+
+#btn-confirm:hover
+  @include hover('accueil')
+
+
+
+#btn-invitation
+  @include btn-type('invitation')
+
+
+
+#btn-invitation:hover
+  @include hover('download')
+
+
+
+#popup-programme
+  @include popup('programme')
+  @include popup('modal')
+
+
+#popup-programme .modal-content p
+  @include popup('programme-content')
+
+
+#popup-programme .modal-content #popup-programme-footer h2
+  @include popup('programme-episode')
+
+
+#popup-programme .modal-content #popup-programme-footer
+  @include popup('programme-footer')
+
+
+#popup-programme .modal-content #popup-programme-footer img
+  @include popup('programme-notification')
+
+
+#popup-programme .modal-content #popup-programme-footer img:hover
+  @include hover('notification')
+
+
+.container
+  @include container
+
+
+.calendar
+  @include calendar
+
+
+.current-date
+  @include calendar-type('current-date')
+
+
+.current-date h1
+  @include calendar-type('current-date-h1')
+
+
+.week-days
+  @include calendar-type('week-days')
+
+
+.days
+  @include calendar-type('days')
+
+
+.weeks
+  @include calendar-type('weeks')
+
+
+.weeks div
+  @include calendar-type('weeks-div')
+
+
+.last-month
+  @include calendar-type('last-month')
+
+
+.weeks span
+  @include calendar-type('weeks-span')
+
+
+@media screen and (min-width: 1000px)
+
+  .navbar
+    @include navbar-size('large')
+
+
+  #navbar-content
+    @include font-size('large')
+
+
+  #navbar-content ul
+    @include navbar-content-size('large')
+
+
+  #navbar-content ul #programmes a
+    @include padding(18px, 27%, 23px, 25%)
+
+
+  #navbar-content ul #podcasts a
+    @include padding(18px, 34%, 23px, 34%)
+
+
+  #navbar-content ul #ledirect a:hover
+    @include padding(10px, 10%, 10px, 10%)
+    @include margin(0, 0, 0, 0)
+
+
+  #navbar-logo a img
+    @include navbar-logo('large')
+
+
+  #navbar-content ul #programmes
+    @include navbar-programmes('large')
+
+
+  #navbar-content ul #podcasts
+    @include navbar-podcasts('large')
+
+
+  #navbar-content ul #ledirect a
+    @include navbar-ledirect('large')
+
+
+  #content-accueil
+    @include content-type('accueil', 'large')
+
+
+  #navbar-content ul #ledirect a #ledirect-text
+    @include ledirect-type('text', 'large')
+
+
+  #navbar-content ul #ledirect a #ledirect-play
+    @include ledirect-type('play', 'large')
+
+
+  #navbar-content ul #ledirect a #ledirect-play img
+    @include img-width(45px)
+
+
+  #navbar-search
+    @include navbar-search('large')
+
+
+  #navbar-search input
+    @include input-size('large')
+
+
+  #btn-search
+    @include btn-type('search')
+    @include btn-size(75px, 45px, 18px)
+
+
+  #navbar-compte
+    @include navbar-compte('large')
+
+
+  #navbar-compte a img
+    @include img-width(70px)
+
+
+  #content-accueil #content-left img
+    @include content-left(100%, 78%, 'large')
+    @include margin(70px, 0, 0, 70px)
+
+
+  #content-accueil #content-left #content-info h1
+    @include content-info(250px, 380px)
+
+
+  #content-accueil #content-left #content-info h3
+    @include content-info(330px, 505px)
+
+
+  #content-accueil #content-left #content-info #btn-play
+    @include btn-size(250px, 60px, 20px)
+    @include content-info(650px, 430px)
+    @include btn-type('play')
+
+
+  #content-accueil #content-left #content-info #btn-play img
+    @include img-width(50px)
+    @include ledirect-type('play', 'large')
+    @include padding(10px, 0, 0, 5px)
+    @include margin(-4px, 0, -4px, 0)
+
+
+  #content-accueil #content-left #content-info #btn-play strong
+    @include ledirect-type('text', 'large')
+    @include margin(8px, 0, 15px, 0)
+
+
+  #content-right
+    @include content-right('large')
+
+
+  .content-program .content-program-info
+    @include content-program-info('large')
+
+
+  #ledirect-content #ledirect-content-img img
+    @include img-width(55%)
+
+
+  #ledirect-content #btn-stop
+    @include btn-size(250px, 60px, 20px)
+
+
+  #ledirect-content img
+    @include img-width(100px)
+    @include btn-type('pause')
+
+
+  #podcast-content #podcast-content-profile #podcast-content-profile-info img
+    @include img-width(50px)
+    @include podcast-content-type('notification')
+
+
+  #podcast-content #podcast-content-profile #podcast-content-profile-info img:hover
+    @include hover('notification')
+
+
+  #podcast-content #podcast-content-profile
+    @include podcast-content-profile('large')

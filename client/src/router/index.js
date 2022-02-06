@@ -22,6 +22,12 @@ const routes = [{
         component: () =>
             import ('../views/Auditeur.vue')
     },
+    {
+        path: '/Programmes',
+        name: 'Programmes',
+        component: () =>
+            import ('../views/Programmes.vue')
+    },
 ]
 
 const router = new VueRouter({

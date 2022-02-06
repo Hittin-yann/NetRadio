@@ -1,18 +1,42 @@
 <template>
-    <section class="hero is-fullheight">
+  <section>
       <Header/>
-      <h1 class="title"> NET'RADIO </h1>
-      <div class="hero-body">
-        <div class="container">
-            <div class="columns is-centered">
-              <div class="column is-7-tablet is-6-desktop is-5-widescreen">
-                <router-link class="box" to="/Animateur">Je suis animateur</router-link>
-                <router-link class="box" to="/Auditeur">Je suis auditeur</router-link>
-                <router-link class="box" to="/">Je suis administrateur</router-link>
-              </div>
+      <div id="content-accueil">
+        <div id="content-left">
+            <img src="img/bg-emission.png">
+            <div id="content-info">
+                <h1>Le journal : Episode 101</h1>
+                <h3>Par George</h3>
+                <router-link to="/">
+                    <button type="submit" id="btn-play">
+                        <img src="img/play.png">
+                        <strong>Ecouter le direct</strong>
+                    </button>
+                </router-link>
             </div>
         </div>
-      </div>
+        <div id="content-right">
+            <div class="content-program">
+                <div class="content-program-info content-program-clicked">
+                    <p class="content-program-time"><strong>10h00</strong></p>
+                    <p class="content-program-name"><strong>Le journal : Episode 101</strong></p>
+                </div>
+                <div class="content-program-info content-program-not-clicked">
+                    <p class="content-program-time"><strong>10h00</strong></p>
+                    <p class="content-program-name"><strong>Emission X : Episode 89</strong></p>
+                </div>
+                <div class="content-program-info content-program-not-clicked">
+                    <p class="content-program-time"><strong>11h00</strong></p>
+                    <p class="content-program-name"><strong>Le chronique de George : Episode 2</strong></p>
+                </div>
+                <div class="content-program-info content-program-not-clicked">
+                    <p class="content-program-time"><strong>À suivre</strong></p>
+                    <p class="content-program-name"><strong>Le journal : Episode 104</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Footer />
   </section>
 </template>
 
@@ -23,9 +47,6 @@ export default {
 }
 </script>
 <style lang="scss">
-.title{
-    text-align: center;
-    color : white;
-}
+
 //npm run build
 </style>

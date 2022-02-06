@@ -12,6 +12,9 @@ Vue.config.productionTip = false
 Vue.component("Header", () =>
     import ("@/components/Header.vue"));
 
+Vue.component("Footer", () =>
+    import ("@/components/Footer.vue"));
+
 Vue.config.productionTip = false
 new Vue({
     router,
