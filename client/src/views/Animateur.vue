@@ -1,6 +1,5 @@
 <template>
   <section class="hero is-fullheight">
-    <Header />
     <div class="main">
       <h1 class="title">Animateur</h1>
       <span :class="{ liveicon: isActive }"></span>

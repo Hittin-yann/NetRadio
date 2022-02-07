@@ -1,6 +1,5 @@
 <template>
     <section class="hero is-fullheight">
-      <Header/>
       <h1 class="title"> NET'RADIO </h1>
       <div class="hero-body">
         <div class="container">

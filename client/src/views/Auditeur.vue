@@ -1,6 +1,5 @@
 <template>
   <section>
-    <Header />
     <div class="main">
       <h1 class="title">Auditeur</h1>
       <div class="btn">
