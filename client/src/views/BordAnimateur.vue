@@ -7,8 +7,8 @@
             <span :class="{ liveicon: isActive }"></span>
             <img src="img/live.jpg">
             <div class="btn">
-                <button @click="startLive" id="live_btn"><strong>Lancer l'émission</strong></button>
-                <button @click="stopLive" id="stop_btn"><strong>Arrêter l'émission</strong></button>
+                <button @click="startLive" :class="{liveButton: !button, noLiveButton: button}" :disabled="!button" id="live_btn"><strong>Lancer l'émission</strong></button>
+                <button @click="stopLive" :class="{stopButton: button, noStopButton: !button}" :disabled="button" id="stop_btn"><strong>Arrêter l'émission</strong></button>
             </div>
         </div>
         <div class="playlist">
@@ -18,13 +18,21 @@
                 <button>Valider</button>
             </form>
             <ul class="musicList scroller">
-                <li v-for="musique in files" @click="playFiles(musique.id)" :id="'musique'+musique.id" :class="{colorPlay: musique.isPlay, noColorPlay: !musique.isPlay}" :key="musique.id">{{musique.name}}</li>
+                <li v-for="musique in files" @click="playFiles(musique.id)" :id="'musique'+musique.id" 
+                :class="{colorPlay: musique.isPlay, noColorPlay: !musique.isPlay}" :key="musique.id">{{musique.name}}</li>
             </ul>
             <div class="btn">
                 <button @click="playFiles" id="stop_btn"><strong>Arrêter la musique</strong></button>
             </div>
         </div>
         <audio id="audio" src="" @ended="playFiles"></audio>
+        <div>
+            <div v-for="invite in demandeInvite" :key="invite.id">
+                {{invite.id}}
+                <button @click="accept(invite.id)" class="accept_bt">Accepter</button>
+                <button @click="reject(invite.id)" class="reject_bt">Refuser</button>
+            </div>
+        </div>
     </div>
     <Footer />
 </section>
@@ -43,25 +51,24 @@ export default {
             savedChunks: [],
             audio: "",
             files: [],
-            playingFile: 0
+            playingFile: 0,
+            button: true,
+            demandeInvite: []
         };
     },
     mounted() {
-        document.querySelector("#stop_btn").disabled = true;
-        document.querySelector("#stop_btn").style.color = "gray";
+        this.socket.on("choise", (idInvite) => {
+            this.demandeInvite.push(idInvite);
+        });
     },
     methods: {
         startLive() {
+            this.button = !this.button;
             let constraints = {
                 audio: true
             };
             let mediaRecorder;
             this.bool = true;
-            document.querySelector("#stop_btn").disabled = false;
-            document.querySelector("#stop_btn").style.color = "white";
-
-            document.querySelector("#live_btn").disabled = true;
-            document.querySelector("#live_btn").style.backgroundColor = "lightcoral";
 
             navigator.mediaDevices.getUserMedia(constraints).then((mediaStream) => {
                 mediaRecorder = new MediaRecorder(mediaStream);
@@ -71,13 +78,19 @@ export default {
 
                 // Lorsque la donnée son est prête.
                 mediaRecorder.ondataavailable = (e) => {
-                    this.chunks.push(e.data);
-                    this.savedChunks.push(e.data);
-                    var blob = new Blob(this.chunks, {
-                        type: "audio/mp3; codecs=opus"
-                    });
                     if (this.bool) {
+                        this.chunks.push(e.data);
+                        this.savedChunks.push(e.data);
+                        let blob = new Blob(this.chunks, {
+                            type: "audio/mp3; codecs=opus",
+                            endings: "native"
+                        });
                         this.socket.emit("radio", blob);
+                    }else{
+                        /*let decodedData = btoa(this.audio);
+                        let binary = convertDataURIToBinary(decodedData);
+                        let blob = new Blob([binary], {type : 'audio/mp3; code=opus', endings: 'native'});
+                        this.socket.emit("radio", blob);*/
                     }
                 };
 
@@ -96,25 +109,21 @@ export default {
         },
 
         stopLive() {
+            this.button = !this.button;
             console.log("Live stoped");
             this.bool = false;
             this.isActive = false;
-
-            document.querySelector("#stop_btn").disabled = true;
-            document.querySelector("#stop_btn").style.color = "gray";
-
-            document.querySelector("#live_btn").disabled = false;
-            document.querySelector("#live_btn").style.backgroundColor = "#FF3535";
 
             //créer l'élement audio
             this.audio = document.querySelector("#audio");
             this.audio.setAttribute("controls", "");
 
-            const blob = new Blob(this.savedChunks, {
-                type: 'audio/mp3; codecs=opus'
+            let blob = new Blob(this.savedChunks, {
+                type: 'audio/mp3; codecs=opus',
+                endings: 'native'
             });
             this.savedChunks = [];
-            const audioURL = window.URL.createObjectURL(blob);
+            let audioURL = window.URL.createObjectURL(blob);
             this.audio.src = audioURL;
             this.audio.play();
             console.log(this.audio.src);
@@ -139,10 +148,12 @@ export default {
             let musique = document.querySelector('#add_files').files.item(this.playingFile);
             this.resetColor();
             if(musique !== null){
+                this.bool = false;
                 this.audio = document.querySelector("#audio");
                 this.audio.setAttribute("controls", "");
 
                 console.log(this.playingFile);
+                console.log(this.audio);
 
                 this.audio.src = URL.createObjectURL(musique);
                 this.audio.load();
@@ -150,6 +161,7 @@ export default {
 
                 this.files[this.playingFile].isPlay = true;
             }else{
+                this.bool = true;
                 console.log("Plus de musiques !");
                 this.resetColor();
                 this.files = [];
@@ -160,12 +172,34 @@ export default {
             this.files.forEach(musique => {
                 musique.isPlay = false;
             });
+        },
+        accept(idInvite){
+            this.socket.emit('giveVoice', {id: idInvite, response: true});
+        },
+        reject(idInvite) {
+            this.socket.emit('giveVoice', {id: idInvite, response: false});
+            this.demandeInvite = this.demandeInvite.filter(invite => invite.id !== idInvite);
         }
     },
 };
 </script>
 
 <style lang="scss">
+//button pour le live
+.liveButton {
+    background-color: lightcoral;
+}
+.noLiveButton {
+    background-color: #FF3535;
+}
+.stopButton {
+    color: grey;
+}
+.noStopButton {
+    color: white;
+}
+
+//couleur playlist
 .colorPlay {
     background-color: green;
 }
@@ -269,7 +303,6 @@ export default {
         margin-top: -150px;
 
         #live_btn {
-            background: #FF3535;
             color: white;
             border: none;
             border-radius: 3px;
@@ -281,7 +314,6 @@ export default {
 
         #stop_btn {
             background: rgb(70, 63, 63);
-            color: white;
             border: none;
             border-radius: 5px;
             width: fit-content;
