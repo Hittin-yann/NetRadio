@@ -22,15 +22,21 @@
                 :class="{colorPlay: musique.isPlay, noColorPlay: !musique.isPlay}" :key="musique.id">{{musique.name}}</li>
             </ul>
             <div class="btn">
-                <button @click="playFiles" id="stop_btn"><strong>Arrêter la musique</strong></button>
+                <button @click="playFiles(null)" id="stop_btn"><strong>Arrêter la musique</strong></button>
             </div>
         </div>
-        <audio id="audio" src="" @ended="playFiles"></audio>
+        <audio id="audio" src=""></audio>
+        <audio id="musique" src="" @ended="playFiles(null)"></audio>
         <div>
             <div v-for="invite in demandeInvite" :key="invite.id">
                 {{invite.id}}
-                <button @click="accept(invite.id)" class="accept_bt">Accepter</button>
-                <button @click="reject(invite.id)" class="reject_bt">Refuser</button>
+                <div v-if="!invite.accepted">
+                    <button @click="accept(invite.id)" class="accept_bt">Accepter</button>
+                    <button @click="reject(invite.id)" class="reject_bt">Refuser</button>
+                </div>
+                <div v-else>
+                    <button @click="ejectInvite(invite.id)" class="eject_bt">Ejecter invité</button>
+                </div>
             </div>
         </div>
     </div>
@@ -57,8 +63,17 @@ export default {
         };
     },
     mounted() {
+        // recois la demande d'un futur invité a l'être
         this.socket.on("choise", (idInvite) => {
             this.demandeInvite.push(idInvite);
+        });
+        // recois le song de l'invité
+        this.socket.on("voiceInvite", (arrayBuffer) => {
+            let blob = new Blob([arrayBuffer], { type: "audio/ogg; codecs=opus" });
+            this.savedChunks.push(blob);
+            this.audio = document.createElement("audio");
+            this.audio.src = window.URL.createObjectURL(blob);
+            this.audio.play();
         });
     },
     methods: {
@@ -80,6 +95,7 @@ export default {
                 mediaRecorder.ondataavailable = (e) => {
                     if (this.bool) {
                         this.chunks.push(e.data);
+                        console.log(typeof e.data);
                         this.savedChunks.push(e.data);
                         let blob = new Blob(this.chunks, {
                             type: "audio/mp3; codecs=opus",
@@ -87,11 +103,12 @@ export default {
                         });
                         this.socket.emit("radio", blob);
                     }else{
-                        /*let decodedData = btoa(this.audio);
-                        let binary = convertDataURIToBinary(decodedData);
-                        let blob = new Blob([binary], {type : 'audio/mp3; code=opus', endings: 'native'});
-                        this.socket.emit("radio", blob);*/
+
                     }
+                    /*let decodedData = btoa(this.audio);
+                    let binary = convertDataURIToBinary(decodedData);
+                    let blob = new Blob([binary], {type : 'audio/mp3; code=opus', endings: 'native'});
+                    this.socket.emit("radio", blob);*/
                 };
 
                 //Commencer le live
@@ -141,27 +158,23 @@ export default {
                 });
             }
         },
-        playFiles(id = null) {
+        playFiles(id) {
             if(id !== null) {
                 this.playingFile = id;
             }
             let musique = document.querySelector('#add_files').files.item(this.playingFile);
             this.resetColor();
             if(musique !== null){
-                this.bool = false;
-                this.audio = document.querySelector("#audio");
-                this.audio.setAttribute("controls", "");
+                let audio = document.querySelector("#musique");
+                audio.setAttribute("controls", "");
 
-                console.log(this.playingFile);
-                console.log(this.audio);
-
-                this.audio.src = URL.createObjectURL(musique);
-                this.audio.load();
-                this.audio.play();
+                audio.src = URL.createObjectURL(musique);
+                audio.volume = 0.2;
+                audio.load();
+                audio.play();
 
                 this.files[this.playingFile].isPlay = true;
             }else{
-                this.bool = true;
                 console.log("Plus de musiques !");
                 this.resetColor();
                 this.files = [];
@@ -175,9 +188,24 @@ export default {
         },
         accept(idInvite){
             this.socket.emit('giveVoice', {id: idInvite, response: true});
+            this.acceptedById(idInvite);
         },
         reject(idInvite) {
             this.socket.emit('giveVoice', {id: idInvite, response: false});
+            this.demandeInvite = this.demandeInvite.filter(invite => invite.id !== idInvite);
+        },
+        acceptedById(idInvite) {
+            this.demandeInvite.forEach((element, index, array) =>  {
+                if(idInvite === element.id) {
+                    array[index].accepted = true;
+                    return true;
+                }
+                inc++;
+            });
+            return false;
+        },
+        ejectInvite(idInvite) {
+            this.socket.emit("inviteDeconnecter");
             this.demandeInvite = this.demandeInvite.filter(invite => invite.id !== idInvite);
         }
     },

@@ -42,9 +42,14 @@ io.on('connection', (socket) => {
         console.log(`Un utilisateur s'est déconnecté. ${reason}`);
     });
 
-    // AUDIO
+    // AUDIO animateur
     socket.on('radio', function(blob) {
         socket.broadcast.emit('voice', blob);
+    });
+
+    // AUDIO invité
+    socket.on('radioInvite', function(blob) {
+        socket.broadcast.emit('voiceInvite', blob);
     });
 
     // l'invité demande la parole
@@ -52,6 +57,12 @@ io.on('connection', (socket) => {
         console.log("demande invité en cours !");
         socket.broadcast.emit('choise', invite);
     });
+
+    // déconnecter invité
+    socket.on('inviteDeconnecter', function() {
+        console.log("Un invité a était déconnecter");
+        socket.broadcast.emit('diconnect');
+    })
 
     // l'animateur donne le droit a la parole a l'invité
     socket.on('giveVoice', function(invite) {
