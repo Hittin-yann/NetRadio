@@ -1,6 +1,7 @@
 <template>
     <section>
       <HeaderPrincipal/>
+      <Categories/>
       <div id="programmes-content">
         <h1><u><strong>PROGRAMMES DE LA SEMAINE</strong></u></h1>
         <div id="programmes-content-date">
@@ -66,8 +67,12 @@
 </template>
 
 <script>
-
+import Categories from '../components/Categories.vue'
 export default {
+    name: 'Programmes',
+    components: {
+        Categories,
+    },
     data(){
       return{
         test: false

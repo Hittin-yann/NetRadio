@@ -1,53 +1,62 @@
-module.exports = app => {
+module.exports = (app) => {
+	let router = require("express").Router();
+	app.use("/", router);
 
-    let router = require("express").Router();
-    app.use('/', router);
+	const auditeur = require("../controllers/auditeurController");
+	const animateur = require("../controllers/animateurController");
+	const categorie = require("../controllers/categorieController");
+	const emission = require("../controllers/emissionController");
 
-    const auditeur = require('../controllers/auditeurController');
-    const animateur = require('../controllers/animateurController');
-    const emission = require('../controllers/emissionController');
+	/**
+	 * Routes des auditeurs
+	 */
+	//get tous les auditeurs
+	router.get("/auditeurs", auditeur.showAuditeurs);
 
-    /**
-     * Routes des auditeurs
-     */
-    //get tous les auditeurs
-    router.get('/auditeurs', auditeur.showAuditeurs);
+	// get un seul utilisateur par id
+	router.get("/auditeurs/:id", auditeur.showAuditeurById);
 
-    // get un seul utilisateur par id 
-    router.get('/auditeurs/:id', auditeur.showAuditeurById);
+	// Créer nouveau auditeur
+	router.post("/auditeurs", auditeur.createAuditeur);
 
-    // Créer nouveau auditeur
-    router.post('/auditeurs', auditeur.createAuditeur);
+	// update un auditeur
+	router.put("/auditeurs/:id", auditeur.updateAuditeur);
 
-    // update un auditeur
-    router.put('/auditeurs/:id', auditeur.updateAuditeur);
+	// delete un auditeur
+	router.delete("/auditeurs/:id", auditeur.deleteAuditeur);
 
-    // delete un auditeur
-    router.delete('/auditeurs/:id', auditeur.deleteAuditeur);
+	/**
+	 * Routes des Animateurs
+	 */
+	//get tous les animateurs
+	router.get("/animateurs", animateur.showAnimateurs);
 
+	// get un seul animateur par id
+	router.get("/animateurs/:id", animateur.showAnimateurById);
 
+	// Créer nouveau animateur
+	router.post("/animateurs", animateur.createAnimateur);
 
-    /**
-     * Routes des Animateurs
-     */
-    //get tous les animateurs
-    router.get('/animateurs', animateur.showAnimateurs);
+	// update un animateur
+	router.put("/animateurs/:id", animateur.updateAnimateur);
 
-    // get un seul animateur par id 
-    router.get('/animateurs/:id', animateur.showAnimateurById);
+	// delete un animateur
+	router.delete("/animateurs/:id", animateur.deleteAnimateur);
 
-    // Créer nouveau animateur
-    router.post('/animateurs', animateur.createAnimateur);
+	// CONNEXION
+	// Auditeur connexion
+	router.post("/connexionAuditeur", auditeur.checkCredentialsAuditeur);
 
-    // update un animateur
-    router.put('/animateurs/:id', animateur.updateAnimateur);
+	// Animateur connexion
+	router.post("/connexionAnimateur", animateur.checkCredentialsAnimateur);
 
-    // delete un animateur
-    router.delete('/animateurs/:id', animateur.deleteAnimateur);
+	// CATEGORIES
+	// get les categories
+	router.get("/categories", categorie.showCategories);
 
-    /**
-     * Routes des emissions
-     */
-    // get tous les emissions
-    router.get('/emissions', emission.showEmissions);
-}
+	// create a categorie
+	router.post("/createCategorie", categorie.createCategorie);
+
+	//EMISSION by genre
+	router.get("/emission/:genre", emission.getEmissionByCategorie);
+};

@@ -9,6 +9,11 @@ import axios from 'axios'
 
 Vue.config.productionTip = false
 
+Vue.prototype.$api = axios.create({
+    baseURL : 'http://localhost:3000',
+    params:{}
+});
+
 Vue.component("HeaderPrincipal", () =>
     import ("@/components/HeaderPrincipal.vue"));
 

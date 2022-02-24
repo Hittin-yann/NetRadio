@@ -26,7 +26,7 @@
             <button type="submit" id="btn-search"><i class="fas fa-search"></i></button>
         </div>
         <div id="navbar-compte">
-            <router-link to="/"><img src="img/compte.png" alt="Connexion"></router-link>
+            <router-link to="/connexion"><img src="img/compte.png" alt="Connexion"></router-link>
         </div>
     </nav>
 </template>

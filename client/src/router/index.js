@@ -23,6 +23,11 @@ const routes = [{
             import ('../views/EcouterDirect.vue')
     },
     {
+		path: "/connexion",
+		name: "ConnexionInscription",
+		component: () => import("../views/Connexion.vue"),
+	},
+    {
         path: '/Programmes',
         name: 'Programmes',
         component: () =>
@@ -34,6 +39,16 @@ const routes = [{
         component: () =>
             import ('../views/BordAnimateur.vue')
     },
+    {
+		path: "/connexionAnimateur",
+		name: "ConnexionAnimateur",
+		component: () => import("../views/ConnexionAnimateur.vue"),
+	},
+	{
+		path: "/emissions/:nom",
+		name: "EmissionsCategorie",
+		component: () => import("../views/EmissionsCategorie.vue"),
+	}
 ]
 
 const router = new VueRouter({
